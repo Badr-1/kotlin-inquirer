@@ -22,7 +22,6 @@ internal class OrderableListComponent<T>(
     private var cursorIndex = 0
     private var interacting = true
     private var value: List<T> = emptyList()
-    private var errorMessage = ""
     private var infoMessage = ""
 
     override fun value(): List<T> {
@@ -34,7 +33,6 @@ internal class OrderableListComponent<T>(
     }
 
     override fun onEvent(event: KInquirerEvent) {
-        errorMessage = ""
         when (event) {
             is KeyPressUp -> {
                 cursorIndex = (cursorIndex - 1).wrap()
@@ -54,11 +52,6 @@ internal class OrderableListComponent<T>(
 
                     cursorIndex == selectedIndex -> {
                         selectedIndex = -1
-                    }
-
-                    else -> {
-                        errorMessage =
-                            "You can only select one item at a time. Deselect the current item before selecting another."
                     }
                 }
             }
@@ -105,10 +98,6 @@ internal class OrderableListComponent<T>(
             // Info message
             if (infoMessage.isNotBlank()) {
                 appendLine(infoMessage.toAnsi { fgBrightBlack() })
-            }
-            // Error message
-            if (errorMessage.isNotBlank()) {
-                appendLine(errorMessage.toAnsi { bold(); fgRed() })
             }
         } else {
             // Results
