@@ -159,6 +159,20 @@ println("Continent: $continent")
 
 ------
 
+#### OrderableList
+```kotlin
+val ascendingOrder: List<String> = KInquirer.promptOrderableList(
+    message = "Reorder those elements in ascending order:",
+    choices = mutableListOf("B","C","D","A")
+)
+println("Reordered: $ascendingOrder")
+```
+<p align="center">
+  <img src="https://raw.githubusercontent.com/badr-1/kotlin-inquirer/master/assets/orderableList.gif?raw=true" width="90%"/>
+</p>
+
+------
+
 #### Checkbox
 ```kotlin
 val toppings: List<String> = KInquirer.promptCheckbox(
@@ -216,6 +230,7 @@ println("Colors: $colors")
 - [x] Input Numbers
 - [x] Input Password
 - [x] List
+- [x] Orderable List
 - [x] Checkbox
 - [x] Input validation error message
 - [x] Support Hint
