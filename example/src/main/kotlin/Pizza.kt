@@ -9,6 +9,7 @@ data class PizzaOrder(
     val size: String,
     val quantity: BigDecimal,
     val toppings: List<String>,
+    val orderOfToppings: List<String> = toppings,
     val beverage: String,
     val comments: String,
 )
@@ -30,6 +31,11 @@ fun main() {
             Choice("Hawaiian", "hawaiian"),
         ),
     )
+    val orderOfToppings: List<String> = KInquirer.promptOrderableList(
+        message = "Please order the toppings as you like",
+        choices = toppings.toMutableList(),
+        pageSize = 3,
+    )
     val beverage: String = KInquirer.promptList("You also get a free 2L beverage", listOf("Pepsi", "7up", "Coke"))
     val comments: String = KInquirer.promptInput(
         message = "Any comments on your purchase experience?",
@@ -43,6 +49,7 @@ fun main() {
         size = size,
         quantity = quantity,
         toppings = toppings,
+        orderOfToppings = orderOfToppings,
         beverage = beverage,
         comments = comments,
     )
