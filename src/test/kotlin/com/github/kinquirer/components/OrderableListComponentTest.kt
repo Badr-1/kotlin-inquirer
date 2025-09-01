@@ -22,6 +22,7 @@ class OrderableListComponentTest {
                 Choice("C", "3"),
                 Choice("D", "4"),
             ),
+            pageSize = 2
         )
     }
 
@@ -37,10 +38,9 @@ class OrderableListComponentTest {
             append(orderableList.message.toAnsi { bold() })
             append(" ")
             appendLine(orderableList.hint.toAnsi { fgBrightBlack() })
-            appendLine("   ◯ A")
-            appendLine("   ◯ B")
             appendLine("   ◯ C")
             appendLine(" ❯ ".toAnsiStr { fgBrightCyan() } + "◯ D")
+            appendLine("(move up and down to reveal more choices)".toAnsi { fgBrightBlack() })
         }
         assertEquals(expected, orderableList.render())
     }
@@ -61,8 +61,7 @@ class OrderableListComponentTest {
             appendLine(orderableList.hint.toAnsi { fgBrightBlack() })
             appendLine(" ❯ ".toAnsiStr { fgBrightCyan() } + "◯ A")
             appendLine("   ◯ B")
-            appendLine("   ◯ C")
-            appendLine("   ◯ D")
+            appendLine("(move up and down to reveal more choices)".toAnsi { fgBrightBlack() })
         }
         assertEquals(expected, orderableList.render())
     }
